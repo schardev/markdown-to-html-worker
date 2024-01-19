@@ -23,5 +23,10 @@
     "remark-rehype": "^11.1.0",
     "shikiji": "^0.9.19",
     "unified": "^11.0.4"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "rehype-pretty-code@0.12.5": "patches/rehype-pretty-code@0.12.5.patch"
+    }
   }
 }
