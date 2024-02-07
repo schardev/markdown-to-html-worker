@@ -12,6 +12,7 @@ import {
 import githubDarkDimmed from "shikiji/themes/github-dark-dimmed.mjs";
 import wasm from "shikiji/onig.wasm";
 import remarkGemoji from "remark-gemoji";
+import { cors } from "cors-headers";
 
 await loadWasm((obj) => WebAssembly.instantiate(wasm, obj));
 
@@ -39,17 +40,31 @@ const generateHTMLFromMarkdown = async (text: string): Promise<string> => {
 
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
-    if (req.method !== "POST") {
-      return Response.json({ error: "Method not allowed!" }, { status: 405 });
-    }
+    const ALLOWED_HOSTNAMES = env.ALLOWED_HOSTNAMES?.split(",");
+    const { headers } = cors(req, {
+      origin: (o) => {
+        if (o && ALLOWED_HOSTNAMES) {
+          try {
+            const originUrl = new URL(o);
+            if (ALLOWED_HOSTNAMES.includes(originUrl.hostname)) {
+              return true;
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
 
-    const ALLOWED_HOSTNAMES = env.ALLOWED_HOSTNAMES.split(",");
-    const reqOriginHeader = req.headers.get("origin");
-    const reqOriginURL = reqOriginHeader ? new URL(reqOriginHeader) : null;
-    const headers = new Headers();
+        return false;
+      },
+    });
 
-    if (reqOriginURL && ALLOWED_HOSTNAMES.includes(reqOriginURL.hostname)) {
-      headers.set("access-control-allow-origin", reqOriginURL.origin);
+    if (req.method === "OPTIONS") {
+      return new Response(null, { status: 204, headers });
+    } else if (req.method !== "POST") {
+      return Response.json(
+        { error: "Method not allowed!" },
+        { status: 405, headers },
+      );
     }
 
     // validate content-type

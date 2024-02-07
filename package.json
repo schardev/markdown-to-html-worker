@@ -10,23 +10,24 @@
     "start": "wrangler dev ./dist/index.js"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20231218.0",
+    "@cloudflare/workers-types": "^4.20240129.0",
     "typescript": "^5.3.3",
-    "wrangler": "^3.22.4"
+    "wrangler": "^3.27.0"
   },
   "dependencies": {
-    "rehype-pretty-code": "^0.12.3",
+    "cors-headers": "0.0.0-beta.0",
+    "rehype-pretty-code": "^0.12.6",
     "rehype-stringify": "^10.0.0",
     "remark-gemoji": "^8.0.0",
     "remark-gfm": "^4.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.0",
-    "shikiji": "^0.9.19",
+    "shikiji": "^0.10.2",
     "unified": "^11.0.4"
   },
   "pnpm": {
     "patchedDependencies": {
-      "rehype-pretty-code@0.12.5": "patches/rehype-pretty-code@0.12.5.patch"
+      "rehype-pretty-code@0.12.6": "patches/rehype-pretty-code@0.12.6.patch"
     }
   }
 }
