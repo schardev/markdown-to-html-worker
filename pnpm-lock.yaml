@@ -11,8 +11,8 @@ patchedDependencies:
 
 dependencies:
   cors-headers:
-    specifier: 0.0.0-beta.0
-    version: 0.0.0-beta.0
+    specifier: 1.0.0
+    version: 1.0.0
   rehype-pretty-code:
     specifier: ^0.12.6
     version: 0.12.6(patch_hash=zv6l4r4k4kl4vxurugpmhktuye)(shikiji@0.10.2)
@@ -486,8 +486,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /cors-headers@0.0.0-beta.0:
-    resolution: {integrity: sha512-oSPGJoanJb9eBVh327VhOwi3S0UQYCbwOh0HMDy2htx5W1eWl8f5neqaLzUw4bdp86GLQJY5w+DKwt8kQR0W4w==}
+  /cors-headers@1.0.0:
+    resolution: {integrity: sha512-SpYEzyKhfZaYXcWaOAkbxkmGeBFp1kpnwVpTK4cFv+kCGSVmx/7+QxzfV2IvZ1QU3smgwIWn2/pBGgRS83u0gA==}
     dev: false
 
   /data-uri-to-buffer@2.0.2:
